@@ -2,7 +2,8 @@
       "relation": ["delegate_permission/common.handle_all_urls"],
       "target": {
         "namespace": "android_app",
-        "package_name": "io.github.wxy6987363",
+        "package_name": "app.netlify.border_warehouse",
         "sha256_cert_fingerprints": ["41:0F:4F:D4:E6:CC:69:F8:43:C5:D8:27:09:29:32:15:73:4E:C2:86:88:09:6F:A2:44:07:A9:B9:F4:DA:C2:4E"]
       }
     }]
+
