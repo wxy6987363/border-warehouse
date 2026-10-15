@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
     <title>边境仓库</title>
     <meta name="theme-color" content="#0a0c0e" />
-    <link rel="manifest" href="/border-warehouse/manifest.json">
-    <script>if(navigator.serviceWorker) navigator.serviceWorker.register('./sw.js');</script>
+    <link rel="manifest" href="/manifest.json">
+    <script>if(navigator.serviceWorker) navigator.serviceWorker.register('/sw.js');</script>
     <style>
         :root {
             --amber: #ffb340;
@@ -6667,7 +6667,12 @@ sdLandY: 0,
         };
 
         const $ = (id) => document.getElementById(id);
-        const UI = {
+        const URL_PARAMS = new URLSearchParams(location.search);
+        const START_MODE = URL_PARAMS.has('start') ? 'start'
+                 : URL_PARAMS.has('warehouse') ? 'warehouse'
+                 : URL_PARAMS.has('market') ? 'market'
+                 : null;
+                 const UI = {
             hud: $("hud"),
             cctx: $("cross").getContext("2d"),
             hitmark: $("hitmark"), feed: $("feed"), dmgDirs: $("dmgDirs"),
@@ -12422,13 +12427,20 @@ function dropAt(clientX, clientY) {
         updateAmmoUI();
         layoutCrosshair();
         updateMenuWallet();
-        // 在 preloadGunModels().then(...) 里，确保箱子模型已加载
-        preloadGunModels().then(() => {
-            buildAllWeaponVMs();
-            spawnLootBoxesAroundMap(); // ← 加这行
-            UI.boot.classList.add("hide");
-            requestAnimationFrame(frame);
-        });
+        await preloadGunModels()
+        buildAllWeaponVMs();
+        spawnLootBoxesAroundMap();
+        UI.boot.classList.add("hide");
+        
+        // 根据 URL 参数自动跳转
+if (START_MODE === 'warehouse') {
+    openBag('view');        // 仓库
+} else if (START_MODE === 'market') {
+    openMarket();           // 市场
+} else if (START_MODE === 'start') {
+    openBag('loadout');     // 开始游戏 = 选装备界面
+}
+        
         // ★ 一次性把所有关键变量挂到 window
         Object.assign(window, {
             // three
