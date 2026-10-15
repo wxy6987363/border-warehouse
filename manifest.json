@@ -2,9 +2,9 @@
     "name": "边境仓库",
     "short_name": "边境仓库",
     "description": "边境仓库——一个第一人称射击游戏",
-    "id": "/border-warehouse/",
-    "start_url": "/border-warehouse/",
-    "scope": "/border-warehouse/",
+    "id": "/",
+    "start_url": "./",
+    "scope": "./",
     "display": "fullscreen",
     "display_override": [
         "fullscreen",
@@ -22,12 +22,12 @@
     "lang": "zh-CN",
     "icons": [
         {
-            "src": "/border-warehouse/icon/192.png",
+            "src": "/icon/192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "/border-warehouse/icon/512.png",
+            "src": "/icon/512.png",
             "sizes": "512x512",
             "type": "image/png"
         }
@@ -36,17 +36,17 @@
         {
             "name": "开始游戏",
             "short_name": "开始",
-            "url": "/border-warehouse/index.html?start"
+            "url": "/index.html?start"
         },
         {
             "name": "仓库",
             "short_name": "仓库",
-            "url": "/border-warehouse/index.html?warehouse"
+            "url": "/index.html?warehouse"
         },
         {
             "name": "市场",
             "short_name": "市场",
-            "url": "/border-warehouse/index.html?market"
+            "url": "/index.html?market"
         }
     ]
 }
